@@ -21,7 +21,10 @@ ARGV.each do |root|
 
   # print the url table to the file
   url_table.each do |key, value|
-    puts "#{key} : #{value}"
+    url_file.puts "#{key} : #{value}"
   end
+
+  # close the file
+  url_file.close
 end
 
