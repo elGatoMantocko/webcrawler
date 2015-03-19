@@ -30,7 +30,7 @@ ARGV.each do |root|
 		#puts entry if link.host == uri.host and not url_coll.find_one(url: link.to_s)
     
     # populate the mongodb collection with the url content
-    url_coll.insert(entry) if link.host == uri.host and not url_coll.find_one(url: link.to_s)
+    url_coll.insert(entry) if link.host == uri.host and not url_coll.find_one(url: link.to_s) and not link.to_s['#']
 	}
 
   url_coll.find(:visited => false).each do |doc|
@@ -46,7 +46,7 @@ ARGV.each do |root|
 		    #puts entry if link.host == uri.host and not url_coll.find_one(url: link.to_s) and not link.to_s[/.pdf/]
         
         # populate the mongodb collection with the url content
-        url_coll.insert(entry) if link.host == uri.host and not url_coll.find_one(url: link.to_s) and not link.to_s[/.pdf/]
+        url_coll.insert(entry) if link.host == uri.host and not url_coll.find_one(url: link.to_s) and not link.to_s[/.pdf|.mp3/] and not link.to_s['#']
 	    }
     rescue ArgumentError => error
       puts error
